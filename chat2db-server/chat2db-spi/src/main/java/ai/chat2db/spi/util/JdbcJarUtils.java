@@ -22,13 +22,13 @@ import okhttp3.Response;
 public class JdbcJarUtils {
 
     private static final OkHttpClient async_client = new OkHttpClient.Builder()
-        .dispatcher(new Dispatcher(Executors.newFixedThreadPool(20))) // 设定线程池大小
-        .build();
+            .dispatcher(new Dispatcher(Executors.newFixedThreadPool(20))) // 设定线程池大小
+            .build();
 
     private static final OkHttpClient client = new OkHttpClient();
 
     public static final String PATH = System.getProperty("user.home") + File.separator + ".chat2db" + File.separator
-        + "jdbc-lib" + File.separator;
+            + "jdbc-lib" + File.separator;
 
     static {
         File file = new File(PATH);
@@ -55,8 +55,8 @@ public class JdbcJarUtils {
             file.delete();
         }
         Request request = new Request.Builder()
-            .url(url)
-            .build();
+                .url(url)
+                .build();
         async_client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -87,8 +87,8 @@ public class JdbcJarUtils {
             file.delete();
         }
         Request request = new Request.Builder()
-            .url(url)
-            .build();
+                .url(url)
+                .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException("Unexpected code " + response);
@@ -134,7 +134,8 @@ public class JdbcJarUtils {
     }
 
     public static final String DOWNLOAD_URL_HOST = "https://cdn.chat2db-ai.com/lib/";
+
     private static String getDownloadUrl(String jarPath) {
-       return   DOWNLOAD_URL_HOST+jarPath;
+        return DOWNLOAD_URL_HOST + jarPath;
     }
 }
